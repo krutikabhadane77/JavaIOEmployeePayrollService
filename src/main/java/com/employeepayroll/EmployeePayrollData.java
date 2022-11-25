@@ -17,6 +17,9 @@ public class EmployeePayrollData {
         System.out.println("Employee Salary: "+salary);
     }
 
+    public String pushData() {
+        return "id = " + id + ", name = " + name + ", salary = " + salary;
+    }
     @Override
     public String toString() {
         return "Created new Employee Data";

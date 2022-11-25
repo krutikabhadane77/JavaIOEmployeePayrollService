@@ -7,7 +7,11 @@ import java.util.Scanner;
 public class EmployeePayrollMain {
     public enum IOCommand
     {CONSOLE_IO,FILE_IO,DB_IO,REST_IO}
-    private List<EmployeePayrollData> employeeDataList;
+    public List<EmployeePayrollData> employeeDataList;
+
+    public void setEmployeeDataList(List<EmployeePayrollData>employeeDataList){
+        this.employeeDataList=employeeDataList;
+    }
 
     public EmployeePayrollMain() {
         employeeDataList = new ArrayList<EmployeePayrollData>();
@@ -27,16 +31,28 @@ public class EmployeePayrollMain {
         sc.close();
     }
 
-    private void writeEmployeePayrollData() {
-        System.out.println("Writing Employee Payroll Data to Console.");
-        for (EmployeePayrollData employee:employeeDataList) {
-            employee.printData();
+    void writeEmployeePayrollData(IOCommand ioType) {
+        if (ioType.equals(ioType.CONSOLE_IO)){
+            System.out.println("Writing Employee Payroll Data to Console.");
+            for (EmployeePayrollData employee:employeeDataList) {
+                employee.printData();
+            }
+        } else if (ioType.equals(ioType.FILE_IO)) {
+            new EmployeePayrollFileIOS().writeData(employeeDataList);
+            System.out.println("Write employee payroll in file");
         }
+    }
+
+    public int countEntries(IOCommand ioType){
+        if (ioType.equals(IOCommand.FILE_IO))
+            return new EmployeePayrollFileIOS().countEntries();
+        return 0;
     }
 
     public static void main(String[] args) {
         EmployeePayrollMain employee = new EmployeePayrollMain();
         employee.readEmployeePayrollData();
-        employee.writeEmployeePayrollData();
+        employee.writeEmployeePayrollData(IOCommand.CONSOLE_IO);
+        employee.writeEmployeePayrollData(IOCommand.FILE_IO);
     }
 }
