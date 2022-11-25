@@ -49,10 +49,15 @@ public class EmployeePayrollMain {
         return 0;
     }
 
+    public void printData(){
+        new EmployeePayrollFileIOS().printData();
+    }
+
     public static void main(String[] args) {
         EmployeePayrollMain employee = new EmployeePayrollMain();
         employee.readEmployeePayrollData();
         employee.writeEmployeePayrollData(IOCommand.CONSOLE_IO);
         employee.writeEmployeePayrollData(IOCommand.FILE_IO);
+        employee.printData();
     }
 }

@@ -3,7 +3,7 @@ import java.io.*;
 import java.nio.file.*;
 import java.util.List;
 public class EmployeePayrollFileIOS {
-    public static String PAYROLL_FNAME = "payroll.txt";
+    public static String payrollFile = "payroll.txt";
 
     public void writeData(List<EmployeePayrollData> employeeDataList) {
 
@@ -14,7 +14,7 @@ public class EmployeePayrollFileIOS {
         });
 
         try {
-            Files.write(Paths.get(PAYROLL_FNAME), empBuffer.toString().getBytes());
+            Files.write(Paths.get(payrollFile), empBuffer.toString().getBytes());
         }catch(IOException exception) {
             exception.printStackTrace();
         }
@@ -25,11 +25,20 @@ public class EmployeePayrollFileIOS {
         int entries = 0;
 
         try {
-            entries = (int) Files.lines(new File(PAYROLL_FNAME).toPath()).count();
+            entries = (int) Files.lines(new File(payrollFile).toPath()).count();
         }
         catch(IOException exception) {
             exception.printStackTrace();
         }
         return entries;
+    }
+
+    public void printData(){
+        try {
+            Files.lines(new File(payrollFile).toPath()).forEach(System.out::println);
+        }
+        catch (IOException exception){
+            exception.printStackTrace();
+        }
     }
 }

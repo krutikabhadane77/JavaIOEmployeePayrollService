@@ -19,6 +19,7 @@ public class EmployeePayrollServiceTest {
         employee = new EmployeePayrollMain();
         employee.setEmployeeDataList(Arrays.asList(arrayOfEmp));
         employee.writeEmployeePayrollData(IOCommand.FILE_IO);
+        employee.printData();
     }
 
     @Test
