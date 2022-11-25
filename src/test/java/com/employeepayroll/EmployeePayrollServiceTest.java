@@ -2,6 +2,7 @@ package com.employeepayroll;
 
 import static org.junit.Assert.*;
 import java.util.Arrays;
+import java.util.List;
 import org.junit.Before;
 import org.junit.Test;
 import com.employeepayroll.EmployeePayrollMain.IOCommand;
@@ -24,6 +25,11 @@ public class EmployeePayrollServiceTest {
 
     @Test
     public void givenThreeEmployeesWhenWrittenToFileShouldMatchEmployeeEntries() {
+        assertEquals(3, employee.countEntries(IOCommand.FILE_IO));
+    }
+    @Test
+    public void givenFileOnReadingFromFileShouldMatchEmployeeCount() {
+        List<EmployeePayrollData> employeeList = employee.readData();
         assertEquals(3, employee.countEntries(IOCommand.FILE_IO));
     }
 }

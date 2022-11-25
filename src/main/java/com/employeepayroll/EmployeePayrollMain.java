@@ -53,11 +53,18 @@ public class EmployeePayrollMain {
         new EmployeePayrollFileIOS().printData();
     }
 
+    public List<EmployeePayrollData>readData(){
+        return new EmployeePayrollFileIOS().readData();
+    }
+
     public static void main(String[] args) {
         EmployeePayrollMain employee = new EmployeePayrollMain();
         employee.readEmployeePayrollData();
         employee.writeEmployeePayrollData(IOCommand.CONSOLE_IO);
         employee.writeEmployeePayrollData(IOCommand.FILE_IO);
         employee.printData();
+        for (EmployeePayrollData employeeData:employee.readData()){
+            employeeData.printData();
+        }
     }
 }
